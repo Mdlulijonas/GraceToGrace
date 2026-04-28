@@ -3,398 +3,135 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
-  <title>GRACE TO GRACE ACADEMY | Premier Early Learning Centre</title>
+  <title>GRACE TO GRACE ACADEMY | Play & Learn with Kid's Voice</title>
 
   <!-- Bootstrap 3 + Fonts + Icons -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  
-  <!-- jsPDF -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
   <style>
-    /* --- GRACE TO GRACE ACADEMY PURPLE & ORANGE THEME --- */
     :root {
       --grace-purple: #6a1b9a;
       --grace-deep-purple: #4a0e6e;
       --grace-orange: #f39c12;
       --grace-orange-light: #f5b041;
       --grace-softwhite: #F9F7F0;
-      --grace-slate: #2C3E50;
-      --grace-accent: #e67e22;
       --shadow-sm: 0 15px 35px rgba(0,0,0,0.08);
-      --transition-smooth: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
     }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Inter', sans-serif;
       background: var(--grace-softwhite);
-      color: var(--grace-slate);
+      color: #2C3E50;
       overflow-x: hidden;
       font-size: 18px;
-      line-height: 1.5;
     }
-
-    h1, h2, h3, .navbar-brand, .title, .btn, .card-header {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-weight: 700;
-    }
-
-    /* --- ANIMATIONS: shimmer, fade-up, subtle drift --- */
-    @keyframes shimmerFloat {
-      0% { background-position: -100% 0; }
-      100% { background-position: 200% 0; }
-    }
-
-    @keyframes gentleRise {
-      0% { opacity: 0; transform: translateY(30px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes goldPulse {
-      0% { text-shadow: 0 0 0px rgba(243, 156, 18, 0.2); }
-      100% { text-shadow: 0 0 12px rgba(243, 156, 18, 0.6); }
-    }
-
-    /* gentle wobble for cartoon image */
-    @keyframes gentleWobble {
-      0% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(-6px) rotate(1deg); }
-      100% { transform: translateY(0px) rotate(0deg); }
-    }
-
-    .animate-float-card {
-      animation: gentleRise 0.7s ease-out forwards;
-      opacity: 0;
-    }
-
-    .section .container > * {
-      animation: gentleRise 0.6s ease forwards;
-    }
-
-    /* orange dust particles (changed from gold) */
-    .orange-dust {
-      position: fixed;
-      pointer-events: none;
-      z-index: 1;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      overflow: hidden;
-    }
-
-    .dust-particle {
-      position: absolute;
-      background: radial-gradient(circle, var(--grace-orange-light), transparent);
-      border-radius: 50%;
-      opacity: 0.5;
-      animation: floatParticle 12s infinite linear;
-    }
-
-    @keyframes floatParticle {
-      0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-      20% { opacity: 0.6; }
-      80% { opacity: 0.4; }
-      100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; }
-    }
-
-    /* Navbar - purple & orange */
     .navbar {
       background: rgba(106, 27, 154, 0.96);
-      border: none;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
       border-bottom: 3px solid var(--grace-orange);
       padding: 6px 0;
     }
-    .navbar-brand {
-      font-size: 1.8rem;
-      font-weight: 800;
-      color: white !important;
-      letter-spacing: -0.5px;
-    }
-    .navbar-brand i {
-      color: var(--grace-orange);
-      margin-right: 8px;
-    }
-    .navbar-nav > li > a {
-      font-weight: 600;
-      color: #f0f0f0 !important;
-      transition: 0.2s;
-      margin: 0 4px;
-      border-radius: 40px;
-    }
-    .navbar-nav > li > a:hover {
-      background: var(--grace-orange);
-      color: var(--grace-purple) !important;
-      transform: translateY(-2px);
-    }
-    .nav-btn {
-      background: var(--grace-orange) !important;
-      color: var(--grace-purple) !important;
-      border-radius: 40px !important;
-      padding: 8px 24px !important;
-      font-weight: 800;
-      box-shadow: 0 4px 12px rgba(243,156,18,0.3);
-    }
-    .nav-btn:hover {
-      background: white !important;
-      color: var(--grace-purple) !important;
-    }
-
-    /* HERO SECTION - BACKGROUND IMAGE (HAPPY CHILDREN) */
+    .navbar-brand { font-size: 1.8rem; font-weight: 800; color: white !important; }
+    .navbar-nav > li > a { color: #f0f0f0 !important; border-radius: 40px; }
+    .navbar-nav > li > a:hover { background: var(--grace-orange); color: #4a0e6e !important; }
     .hero-section {
-      min-height: 92vh;
+      min-height: 85vh;
+      background: linear-gradient(135deg, rgba(106,27,154,0.75), rgba(74,14,110,0.8)), url('cartoon1.jpg');
+      background-size: cover;
       display: flex;
       align-items: center;
-      position: relative;
-      background: linear-gradient(135deg, rgba(106,27,154,0.75), rgba(74,14,110,0.8)), 
-                  url('cartoon1.jpg');
-      background-size: cover;
-      background-position: center 40%;
-      background-blend-mode: overlay;
     }
     .hero-text {
-      background: rgba(255,255,245,0.94);
-      backdrop-filter: blur(4px);
+      background: rgba(255,255,245,0.96);
       border-radius: 48px;
       padding: 36px 44px;
       border-left: 10px solid var(--grace-orange);
-      box-shadow: 0 25px 40px rgba(0,0,0,0.2);
     }
-    .typewriter-container {
-      font-family: 'Plus Jakarta Sans', monospace;
-      font-size: 2.8rem;
-      font-weight: 800;
-    }
-    .cursor {
-      display: inline-block;
-      width: 5px;
-      height: 2.8rem;
-      background: var(--grace-orange);
-      vertical-align: middle;
-      animation: blink 0.9s infinite;
-    }
+    .typewriter-container { font-size: 2.8rem; font-weight: 800; }
+    .cursor { display: inline-block; width: 5px; height: 2.8rem; background: var(--grace-orange); animation: blink 0.9s infinite; }
     @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0;} }
-
-    /* Cartoon image styling */
     .cartoon-header-img {
       max-width: 100%;
       border-radius: 48px;
-      box-shadow: 0 25px 40px rgba(0,0,0,0.25);
       border: 4px solid var(--grace-orange);
-      background: #FFF9E8;
-      padding: 8px;
-      transition: var(--transition-smooth);
-      animation: gentleWobble 5s ease-in-out infinite;
+      animation: gentleWobble 5s infinite;
     }
-    .cartoon-header-img:hover {
-      transform: scale(1.02);
-      border-color: #FFDF85;
-      box-shadow: 0 30px 50px rgba(0,0,0,0.3);
-    }
-    .cartoon-wrapper {
-      text-align: center;
-      background: rgba(106,27,154,0.3);
-      border-radius: 60px;
-      padding: 12px;
-      backdrop-filter: blur(4px);
-    }
-
-    .btn-grace {
-      border-radius: 60px;
-      padding: 14px 36px;
-      font-weight: 800;
-      border: none;
-      transition: var(--transition-smooth);
-      box-shadow: 0 8px 14px rgba(0,0,0,0.1);
-    }
-    .btn-orange {
-      background: var(--grace-orange);
-      color: var(--grace-purple);
-    }
-    .btn-orange:hover {
-      background: #e67e22;
-      transform: translateY(-4px);
-      color: white;
-    }
-    .btn-outline-orange {
-      background: transparent;
-      border: 2px solid var(--grace-orange);
-      color: var(--grace-purple);
-    }
-    .btn-outline-orange:hover {
-      background: var(--grace-orange);
-      color: var(--grace-purple);
-      transform: translateY(-3px);
-    }
-
-    /* Feature Grid */
-    .feature-icon {
-      font-size: 2.4rem;
-      color: var(--grace-orange);
-      margin-bottom: 1rem;
-    }
-    .feature-card {
+    @keyframes gentleWobble { 0%{transform:translateY(0)} 50%{transform:translateY(-6px)} 100%{transform:translateY(0)} }
+    .btn-orange { background: var(--grace-orange); color: #4a0e6e; border-radius: 60px; font-weight: 800; }
+    .feature-card, .program-card, .download-card, .play-card {
       background: white;
       border-radius: 28px;
-      padding: 28px 20px;
-      text-align: center;
-      transition: var(--transition-smooth);
-      border-bottom: 5px solid var(--grace-orange);
+      padding: 20px;
       box-shadow: var(--shadow-sm);
       height: 100%;
     }
-    .feature-card:hover {
-      transform: translateY(-12px);
-      box-shadow: 0 25px 35px rgba(0,0,0,0.12);
-    }
-
-    /* Program Cards */
-    .program-card {
-      background: white;
-      border-radius: 32px;
-      overflow: hidden;
-      transition: var(--transition-smooth);
-      box-shadow: 0 18px 30px rgba(0,0,0,0.08);
-      height: 100%;
-      border: 1px solid rgba(243,156,18,0.3);
-    }
-    .program-card:hover {
-      transform: translateY(-12px) scale(1.01);
-      box-shadow: 0 25px 40px rgba(0,0,0,0.15);
-      border-color: var(--grace-orange);
-    }
-    .card-header {
-      padding: 24px;
-      background: var(--grace-purple);
-      color: white;
-      text-align: center;
-      border-bottom: 3px solid var(--grace-orange);
-    }
-    .card-header h3 { margin: 0; font-size: 1.9rem; }
-    .price-tag {
-      font-size: 2.4rem;
-      font-weight: 800;
-      color: var(--grace-deep-purple);
-    }
-    .program-detail {
-      padding: 28px;
-      background: #FEFCF5;
-    }
-    .badge-free {
-      background: var(--grace-orange-light);
-      color: #4a0e6e;
+    .program-card .card-header { background: var(--grace-purple); color: white; border-radius: 28px 28px 0 0; padding: 15px; }
+    .price-tag { font-size: 2rem; color: var(--grace-deep-purple); font-weight: 800; }
+    .gallery-card img { width: 100%; height: 250px; object-fit: cover; border-radius: 28px; border: 3px solid var(--grace-orange); }
+    .game-btn {
+      background: linear-gradient(135deg, #6a1b9a, #4a0e6e);
+      border: none;
       border-radius: 60px;
       padding: 8px 16px;
-      font-weight: 700;
-      display: inline-block;
-      font-size: 0.85rem;
-    }
-
-    /* Gallery */
-    .gallery-card {
-      border-radius: 28px;
-      overflow: hidden;
-      transition: 0.4s;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-      border: 2px solid var(--grace-orange);
-    }
-    .gallery-card img {
-      width: 100%;
-      height: 280px;
-      object-fit: cover;
-      transition: 0.5s;
-    }
-    .gallery-card:hover img {
-      transform: scale(1.08);
-    }
-
-    /* Download Cards */
-    .download-card {
-      background: white;
-      border-radius: 28px;
-      padding: 1.6rem;
-      text-align: center;
-      border-left: 8px solid var(--grace-orange);
-      transition: 0.3s;
-      height: 100%;
-      box-shadow: 0 8px 18px rgba(0,0,0,0.05);
-    }
-    .download-card:hover {
-      transform: translateY(-8px);
-      background: #FFFEF7;
-    }
-
-    /* Form */
-    .form-container {
-      background: white;
-      border-radius: 38px;
-      padding: 40px;
-      box-shadow: 0 20px 35px rgba(0,0,0,0.1);
-      border: 1px solid var(--grace-orange);
-    }
-    .bank-details {
-      background: #F1E9D2;
-      border-left: 8px solid var(--grace-orange);
-    }
-
-    /* Footer */
-    .footer-grace {
-      background: #4a0e6e;
-      position: relative;
-      padding: 50px 0 30px;
+      margin: 5px;
+      font-size: 1.1rem;
+      font-weight: bold;
       color: white;
-      text-align: center;
-      margin-top: 60px;
+      transition: 0.2s;
     }
-    .footer-grace h3 i { color: var(--grace-orange); }
-    .footer-grace a { color: var(--grace-orange-light); }
-
-    .title {
-      font-size: 3rem;
-      margin-bottom: 2rem;
-      position: relative;
+    .game-btn:hover { transform: scale(1.05); }
+    .abc-btn { background: linear-gradient(135deg, #3498db, #2980b9); }
+    .number-btn { background: linear-gradient(135deg, #f39c12, #e67e22); }
+    .animal-btn { background: linear-gradient(135deg, #e74c3c, #c0392b); }
+    .music-btn { background: linear-gradient(135deg, #2ecc71, #27ae60); }
+    .activity-area {
+      background: #fef9e6;
+      border-radius: 40px;
+      padding: 20px;
+      margin-top: 20px;
+      border: 2px dashed var(--grace-orange);
+    }
+    .memory-card {
+      background: #6a1b9a;
+      border-radius: 20px;
+      padding: 12px;
+      margin: 6px;
+      cursor: pointer;
       display: inline-block;
-    }
-    .title:after {
-      content: '';
-      display: block;
       width: 80px;
-      height: 4px;
-      background: var(--grace-orange);
-      margin: 12px auto 0;
-      border-radius: 4px;
+      text-align: center;
+      font-size: 1.8rem;
+      color: white;
     }
-    section { padding: 80px 0; }
-    @media (max-width: 768px) {
-      .title { font-size: 2.2rem; }
-      .typewriter-container { font-size: 1.8rem; }
-      .hero-text { padding: 24px; }
-      .program-card .card-header h3 { font-size: 1.5rem; }
-      .cartoon-header-img { max-width: 85%; }
+    .memory-card:hover { background: var(--grace-orange); color: #4a0e6e; }
+    .session-card {
+      background: #fdf0e0;
+      border-radius: 20px;
+      padding: 15px;
+      text-align: center;
+      border-left: 6px solid var(--grace-orange);
+      margin-bottom: 15px;
     }
+    .student-login { background: white; border-radius: 60px; padding: 20px; text-align: center; }
+    .student-input { width: 200px; padding: 8px; border-radius: 40px; border: 2px solid var(--grace-orange); margin: 10px; }
+    footer { background: #4a0e6e; color: white; text-align: center; padding: 40px 0; margin-top: 60px; }
+    .title { font-size: 2.5rem; text-align: center; margin-bottom: 2rem; }
+    .title:after { content: '🌈'; display: block; font-size: 2rem; }
+    @media (max-width: 768px) { .game-btn { font-size: 0.8rem; padding: 5px 10px; } .memory-card { width: 60px; font-size: 1.2rem; } }
   </style>
 </head>
 <body>
 
-<!-- Orange dust particles (changed from gold) -->
-<div class="orange-dust" id="orangeDustContainer"></div>
+<!-- Floating background elements (orange dust) -->
+<div class="orange-dust" id="orangeDustContainer" style="position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0;"></div>
 
 <!-- NAVBAR -->
 <nav class="navbar navbar-fixed-top">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
-        <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar" style="background:white"></span>
         <span class="icon-bar" style="background:white"></span>
         <span class="icon-bar" style="background:white"></span>
@@ -403,121 +140,174 @@
     </div>
     <div class="collapse navbar-collapse" id="navbar-collapse">
       <ul class="nav navbar-nav navbar-right">
+        <li><a href="#home">Home</a></li>
         <li><a href="#features">Why Us</a></li>
         <li><a href="#programs">Programs</a></li>
         <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#playlearn">Play & Learn</a></li>
         <li><a href="#resources">Resources</a></li>
-        <li><a href="#register">Register</a></li>
-        <li><a href="#contact" class="nav-btn">Enroll Now</a></li>
+        <li><a href="#register" class="nav-btn" style="background:#f39c12; color:#4a0e6e; border-radius:40px; padding:8px 20px;">Enroll</a></li>
       </ul>
     </div>
   </div>
 </nav>
 
-<!-- HERO SECTION with BACKGROUND IMAGE -->
+<!-- HERO -->
 <section class="hero-section" id="home">
   <div class="container">
     <div class="row">
       <div class="col-md-7">
         <div class="hero-text">
-          <div class="typewriter-area">
-            <div id="typewriter" class="typewriter-container"></div>
-            <span class="cursor"></span>
-          </div>
-          <p style="font-size: 1.25rem; margin-top: 20px;"><i class="fas fa-graduation-cap" style="color: #f39c12;"></i> <strong>English Medium | Modern Facility | Transport | Small Classes | FREE Stationery & Toiletries</strong></p>
-          <div class="row mt-4" style="margin-top: 25px;">
-            <div class="col-xs-6"><a href="#register" class="btn btn-grace btn-orange btn-block"><i class="fas fa-star"></i> Enroll Today</a></div>
-            <div class="col-xs-6"><a href="#programs" class="btn btn-grace btn-outline-orange btn-block">View Programs</a></div>
+          <div><span id="typewriter" class="typewriter-container"></span><span class="cursor"></span></div>
+          <p class="mt-3"><strong>✨ English Medium • Safe Transport • Small Classes • FREE Stationery ✨</strong></p>
+          <div class="row mt-4">
+            <div class="col-xs-6"><a href="#register" class="btn btn-orange btn-block">Enroll Today</a></div>
+            <div class="col-xs-6"><a href="#playlearn" class="btn btn-default btn-block" style="border:2px solid #f39c12;">Play & Learn</a></div>
           </div>
         </div>
       </div>
-      <!-- CARTOON IMAGE SIDE DECORATION (using cartoon.png) -->
-      <div class="col-md-5 hidden-sm hidden-xs text-center">
-        <div class="cartoon-wrapper">
-          <img class="cartoon-header-img" src="cartoon.png" 
-               alt="Cartoon illustration of happy children playing and learning together at GRACE TO GRACE ACADEMY" 
-               title="Joyful learning at GRACE TO GRACE ACADEMY">
-          <p style="color: #FFE3A4; margin-top: 12px; font-weight: 500; text-shadow: 1px 1px 0 #4a0e6e;"><i class="fas fa-heart" style="color: #f39c12;"></i> Where little leaders shine</p>
-        </div>
-      </div>
-      <!-- For mobile: show cartoon as well but smaller -->
-      <div class="col-xs-12 visible-sm visible-xs text-center" style="margin-top: 20px;">
-        <div class="cartoon-wrapper" style="display: inline-block; max-width: 280px;">
-          <img class="cartoon-header-img" src="cartoon.png" 
-               alt="Cartoon kids" style="max-width: 100%; border-radius: 40px;">
-        </div>
+      <div class="col-md-5 text-center">
+        <img src="cartoon.png" class="cartoon-header-img" style="max-width:100%;" alt="Kids">
+        <p style="color:#ffe9b6; background:#6a1b9a80; display:inline-block; padding:6px 20px; border-radius:40px;"><i class="fas fa-heart"></i> A, B, C, come play with me!</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FEATURES SECTION -->
-<section id="features" class="section" style="background: #FEF9E6;">
+<!-- FEATURES -->
+<section id="features" style="background:#fdf5ff; padding:60px 0;">
   <div class="container">
-    <h2 class="title text-center">Why GRACE TO GRACE ACADEMY?</h2>
+    <h2 class="title">Why Little Stars Shine Here 🌟</h2>
     <div class="row">
-      <div class="col-md-3 col-sm-6"><div class="feature-card"><div class="feature-icon"><i class="fas fa-language"></i></div><h4>English Medium</h4><p>Fully immersive English instruction, building confidence from day one.</p></div></div>
-      <div class="col-md-3 col-sm-6"><div class="feature-card"><div class="feature-icon"><i class="fas fa-bus"></i></div><h4>Transport Services</h4><p>Safe, monitored door-to-door transport with trained drivers.</p></div></div>
-      <div class="col-md-3 col-sm-6"><div class="feature-card"><div class="feature-icon"><i class="fas fa-children"></i></div><h4>Small Class Ratio</h4><p>Max 1:8 teacher-child ratio, individual attention guaranteed.</p></div></div>
-      <div class="col-md-3 col-sm-6"><div class="feature-card"><div class="feature-icon"><i class="fas fa-gift"></i></div><h4>FREE Stationery & Toiletries</h4><p>All learning materials, art supplies & toiletries provided.</p></div></div>
-    </div>
-    <div class="row mt-4" style="margin-top: 30px;"><div class="col-md-12 text-center"><span class="badge-free" style="background: var(--grace-orange); font-size: 1rem;"><i class="fas fa-hand-sparkles"></i> Fully equipped facility: sensory room, library, outdoor play, CCTV</span></div></div>
-  </div>
-</section>
-
-<!-- PROGRAMS SECTION -->
-<section id="programs" class="section">
-  <div class="container">
-    <h2 class="title text-center">Our Learning Pathways</h2>
-    <div class="row">
-      <div class="col-sm-6 col-lg-3"><div class="program-card"><div class="card-header"><h3>🐣 Little Stars</h3><small>0 – 2 Years</small></div><div class="program-detail"><div class="price-tag">R850 <span style="font-size:1rem;">/month</span></div><p>Sensory exploration, bonding, and motor skills. FREE stationery + toiletries included.</p><span class="badge-free"><i class="fas fa-check-circle"></i> All supplies covered</span></div></div></div>
-      <div class="col-sm-6 col-lg-3"><div class="program-card"><div class="card-header"><h3>🎨 Bright Cubs</h3><small>2 – 3 Years</small></div><div class="program-detail"><div class="price-tag">R750</div><p>Social play, creativity & early communication. FREE art set + toiletries.</p><span class="badge-free"><i class="fas fa-brush"></i> No extra costs</span></div></div></div>
-      <div class="col-sm-6 col-lg-3"><div class="program-card"><div class="card-header"><h3>📖 Pre-Grade R</h3><small>3 – 4 Years</small></div><div class="program-detail"><div class="price-tag">R650</div><p>Literacy, numeracy & leadership skills. All stationery provided.</p><span class="badge-free"><i class="fas fa-book-open"></i> Free learning pack</span></div></div></div>
-      <div class="col-sm-6 col-lg-3"><div class="program-card"><div class="card-header"><h3>🎓 Grade R Explorers</h3><small>5 – 6 Years</small></div><div class="program-detail"><div class="price-tag">R850</div><p>School readiness & confidence. Full graduation ceremony & free supplies.</p><span class="badge-free"><i class="fas fa-graduation-cap"></i> All-inclusive</span></div></div></div>
-    </div>
-    <p class="text-center" style="margin-top: 30px;"><i class="fas fa-truck-fast"></i> <strong>Transport service available:</strong> R250/month (optional, safe & reliable).</p>
-  </div>
-</section>
-
-<!-- GALLERY SECTION -->
-<section id="gallery" style="background: #F3EFE2; padding: 80px 0;">
-  <div class="container">
-    <h2 class="title text-center">Moments of Discovery</h2>
-    <div class="row">
-      <div class="col-md-4"><div class="gallery-card"><img src="https://images.pexels.com/photos/3662767/pexels-photo-3662767.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop" alt="classroom activity"></div></div>
-      <div class="col-md-4"><div class="gallery-card"><img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?w=800&h=600&fit=crop" alt="outdoor play"></div></div>
-      <div class="col-md-4"><div class="gallery-card"><img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=800&h=600&fit=crop" alt="art session"></div></div>
+      <div class="col-md-3"><div class="feature-card"><i class="fas fa-comment-dots fa-3x" style="color:#f39c12;"></i><h4>English Immersion</h4><p>Playful learning, fluent English.</p></div></div>
+      <div class="col-md-3"><div class="feature-card"><i class="fas fa-bus-alt fa-3x" style="color:#f39c12;"></i><h4>Safe Transport</h4><p>Door-to-door care.</p></div></div>
+      <div class="col-md-3"><div class="feature-card"><i class="fas fa-hand-holding-heart fa-3x" style="color:#f39c12;"></i><h4>Small Classes 1:8</h4><p>Individual attention.</p></div></div>
+      <div class="col-md-3"><div class="feature-card"><i class="fas fa-gift fa-3x" style="color:#f39c12;"></i><h4>FREE Stationery</h4><p>All supplies included.</p></div></div>
     </div>
   </div>
 </section>
 
-<!-- PARENT RESOURCES (Download cards) -->
-<section id="resources" class="section">
+<!-- PROGRAMS -->
+<section id="programs" style="padding:60px 0;">
   <div class="container">
-    <h2 class="title text-center">📘 Parent Hub</h2>
+    <h2 class="title">🌈 Our Learning Pathways</h2>
     <div class="row">
-      <div class="col-md-3 col-sm-6"><div class="download-card"><i class="fas fa-chart-line download-icon" style="font-size:2.5rem; color:#f39c12;"></i><h4>Progress Report</h4><p>Monthly development insights</p><input type="text" id="studentReportNum" class="student-input" placeholder="Student ID (6 digits)" maxlength="6" style="border-radius:40px; border:1px solid #f39c12;"><button class="btn btn-sm" style="background:#6a1b9a; color:white; border-radius:40px; margin-top:10px;" onclick="downloadRestrictedPDF('report')">Download PDF</button></div></div>
-      <div class="col-md-3 col-sm-6"><div class="download-card"><i class="fas fa-calendar-alt" style="font-size:2.5rem; color:#f39c12;"></i><h4>Year Plan 2026</h4><p>Academic calendar & events</p><input type="text" id="studentYearNum" class="student-input" placeholder="Student ID (6 digits)" maxlength="6" style="border-radius:40px; border:1px solid #f39c12;"><button class="btn btn-sm" style="background:#6a1b9a; color:white; border-radius:40px; margin-top:10px;" onclick="downloadRestrictedPDF('yearplan')">Download PDF</button></div></div>
-      <div class="col-md-3 col-sm-6"><div class="download-card"><i class="fas fa-pencil-ruler" style="font-size:2.5rem; color:#f39c12;"></i><h4>Stationery List</h4><p>All items FREE for enrolled kids</p><button class="btn btn-sm" style="background:#f39c12; color:#4a0e6e; border-radius:40px; margin-top:15px;" onclick="downloadOpenPDF('stationery')">Download PDF</button></div></div>
-      <div class="col-md-3 col-sm-6"><div class="download-card"><i class="fas fa-clipboard-list" style="font-size:2.5rem; color:#f39c12;"></i><h4>Enrollment Guide</h4><p>Steps & requirements</p><button class="btn btn-sm" style="background:#f39c12; color:#4a0e6e; border-radius:40px; margin-top:15px;" onclick="downloadOpenPDF('enrollment')">Download PDF</button></div></div>
+      <div class="col-sm-6 col-lg-3"><div class="program-card"><div class="card-header"><h3>🐣 Little Stars</h3><small>0–2 Years</small></div><div class="program-detail"><div class="price-tag">R850/mo</div><p>FREE nappy kit + stationery</p></div></div></div>
+      <div class="col-sm-6 col-lg-3"><div class="program-card"><div class="card-header"><h3>🎨 Rainbow Cubs</h3><small>2–3 Years</small></div><div class="program-detail"><div class="price-tag">R750/mo</div><p>FREE art set</p></div></div></div>
+      <div class="col-sm-6 col-lg-3"><div class="program-card"><div class="card-header"><h3>📚 Pre-Grade R</h3><small>3–4 Years</small></div><div class="program-detail"><div class="price-tag">R650/mo</div><p>All stationery provided</p></div></div></div>
+      <div class="col-sm-6 col-lg-3"><div class="program-card"><div class="card-header"><h3>🎓 Grade R</h3><small>5–6 Years</small></div><div class="program-detail"><div class="price-tag">R850/mo</div><p>Graduation ceremony</p></div></div></div>
     </div>
   </div>
 </section>
 
-<!-- REGISTRATION SECTION -->
-<section id="register" class="section" style="background: #FDF9EF;">
+<!-- GALLERY -->
+<section id="gallery" style="background:#f9f0ff; padding:60px 0;">
   <div class="container">
-    <h2 class="title text-center">Start Your Journey</h2>
+    <h2 class="title">📸 Moments of Wonder</h2>
+    <div class="row">
+      <div class="col-md-4"><img src="https://cdn.pixabay.com/photo/2017/09/01/20/23/pencils-2705753_640.jpg" class="gallery-card" style="width:100%;"></div>
+      <div class="col-md-4"><img src="https://cdn.pixabay.com/photo/2016/11/18/14/05/child-1834875_640.jpg" class="gallery-card" style="width:100%;"></div>
+      <div class="col-md-4"><img src="https://cdn.pixabay.com/photo/2015/01/19/13/51/child-604321_640.jpg" class="gallery-card" style="width:100%;"></div>
+    </div>
+  </div>
+</section>
+
+<!-- PLAY & LEARN ZONE (Student Number Protected) -->
+<section id="playlearn" style="background:#FFF0E0; padding:60px 0;">
+  <div class="container">
+    <h2 class="title">🎮 Play & Learn Zone (Ages 2-6)</h2>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="play-card">
+          <div id="loginArea" class="student-login">
+            <i class="fas fa-lock fa-3x" style="color:#f39c12;"></i>
+            <h3>Enter Student Number</h3>
+            <input type="text" id="studentPlayNumber" class="student-input" placeholder="6 digits" maxlength="6">
+            <button class="btn btn-orange" onclick="unlockPlayArea()">Unlock Fun Zone</button>
+            <p><small>Demo: <strong>123456</strong></small></p>
+          </div>
+          <div id="playContent" style="display:none;">
+            <div class="alert alert-success">🎉 Welcome! Tap any button – everything speaks with a child's voice! 🎉</div>
+            
+            <!-- ABCs -->
+            <h3><i class="fas fa-letter"></i> ABC Alphabet</h3>
+            <div id="abcButtons" class="text-center"></div>
+            
+            <!-- Numbers -->
+            <h3 class="mt-4">🔢 Numbers 1-10</h3>
+            <div id="numberButtons" class="text-center"></div>
+            
+            <!-- Animals -->
+            <h3 class="mt-4">🐾 Animals</h3>
+            <div id="animalButtons" class="text-center"></div>
+            
+            <!-- Shapes -->
+            <h3 class="mt-4">🔺 Shapes</h3>
+            <div id="shapeButtons" class="text-center"></div>
+            
+            <!-- Real Songs with Play/Stop -->
+            <h3 class="mt-4">🎵 Sing-Along Songs (Real Melodies)</h3>
+            <div id="songButtons" class="text-center"></div>
+            
+            <!-- Four Academic Sessions -->
+            <h3 class="mt-4">📅 Four Sessions of the Year (Terms)</h3>
+            <div class="row">
+              <div class="col-md-3"><div class="session-card"><strong>🌸 Term 1</strong><br>Jan–Mar<br>ABC & Welcome</div></div>
+              <div class="col-md-3"><div class="session-card"><strong>☀️ Term 2</strong><br>Apr–Jun<br>Reading & Animals</div></div>
+              <div class="col-md-3"><div class="session-card"><strong>🍂 Term 3</strong><br>Jul–Sep<br>STEM & Sports</div></div>
+              <div class="col-md-3"><div class="session-card"><strong>❄️ Term 4</strong><br>Oct–Dec<br>Graduation Concert</div></div>
+            </div>
+            
+            <!-- Memory Game -->
+            <h3 class="mt-4">🧠 Memory Match</h3>
+            <div id="memoryGame" class="text-center"></div>
+            <button class="btn btn-sm btn-outline-orange mt-2" onclick="resetMemoryGame()">🔄 New Game</button>
+            
+            <!-- Color Hunt -->
+            <h3 class="mt-4">🎨 Color Hunt</h3>
+            <button class="btn btn-orange" onclick="playColorGame()">Play Color Hunt</button>
+            
+            <div id="activityMessage" class="activity-area text-center">
+              <p><i class="fas fa-smile"></i> Tap any button – cheerful kid's voice will teach you!</p>
+            </div>
+            <div class="text-center mt-3">
+              <button class="btn btn-sm btn-outline-orange" onclick="giveHighFive()">✋ High-Five</button>
+              <button class="btn btn-sm btn-outline-orange" onclick="logoutPlayArea()">🚪 Logout</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARENT RESOURCES -->
+<section id="resources" style="padding:60px 0;">
+  <div class="container">
+    <h2 class="title">📘 Parent Hub</h2>
+    <div class="row">
+      <div class="col-md-3"><div class="download-card"><i class="fas fa-chart-line fa-3x" style="color:#f39c12;"></i><h4>Progress Report</h4><input type="text" id="studentReportNum" class="student-input" placeholder="Student ID"><button class="btn btn-sm btn-orange mt-2" onclick="downloadRestrictedPDF('report')">Download PDF</button></div></div>
+      <div class="col-md-3"><div class="download-card"><i class="fas fa-calendar-alt fa-3x" style="color:#f39c12;"></i><h4>Year Plan</h4><input type="text" id="studentYearNum" class="student-input" placeholder="Student ID"><button class="btn btn-sm btn-orange mt-2" onclick="downloadRestrictedPDF('yearplan')">Download PDF</button></div></div>
+      <div class="col-md-3"><div class="download-card"><i class="fas fa-pencil-ruler fa-3x" style="color:#f39c12;"></i><h4>Stationery List</h4><button class="btn btn-sm btn-orange mt-3" onclick="downloadOpenPDF('stationery')">Download PDF</button></div></div>
+      <div class="col-md-3"><div class="download-card"><i class="fas fa-clipboard-list fa-3x" style="color:#f39c12;"></i><h4>Enrollment Guide</h4><button class="btn btn-sm btn-orange mt-3" onclick="downloadOpenPDF('enrollment')">Download PDF</button></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- REGISTRATION -->
+<section id="register" style="background:#fdf9ef; padding:60px 0;">
+  <div class="container">
+    <h2 class="title">✨ Begin Your Journey ✨</h2>
     <div class="row">
       <div class="col-md-6 col-md-offset-3">
-        <div class="form-container">
+        <div class="form-container" style="background:white; border-radius:58px; padding:30px; border:2px solid #f39c12;">
           <form id="registrationForm">
-            <div class="form-group"><label><i class="fas fa-user-graduate"></i> Child's Full Name</label><input type="text" class="form-control" placeholder="e.g. Olivia Thompson" required></div>
-            <div class="form-group"><label><i class="fas fa-envelope"></i> Parent Email</label><input type="email" class="form-control" placeholder="parent@example.com" required></div>
-            <div class="form-group"><label><i class="fas fa-phone-alt"></i> Contact Number</label><input type="tel" class="form-control" placeholder="+27 83 456 7890" required></div>
-            <div class="form-group"><label><i class="fas fa-cloud-upload-alt"></i> Proof of Payment / Deposit Receipt</label><input type="file" class="form-control" style="border:2px dashed #f39c12;" required></div>
-            <div class="bank-details p-3 mb-3"><i class="fas fa-university"></i> <strong>GRACE TO GRACE ACADEMY Banking</strong><br><small>Bank: FNB | Acc: 62849502617 | Branch: 250655 | Ref: ChildName_Grace</small></div>
-            <button type="submit" class="btn btn-grace btn-orange btn-block btn-lg"><i class="fas fa-check-circle"></i> Submit Enrollment</button>
+            <div class="form-group"><label>Child's Name</label><input type="text" class="form-control" required></div>
+            <div class="form-group"><label>Parent Email</label><input type="email" class="form-control" required></div>
+            <div class="form-group"><label>Phone</label><input type="tel" class="form-control" required></div>
+            <div class="form-group"><label>Proof of Payment</label><input type="file" class="form-control"></div>
+            <div class="bank-details" style="background:#f1e4fc; padding:15px; border-left:8px solid #f39c12;"><i class="fas fa-university"></i> <strong>Banking</strong><br>FNB | Acc: 62849502617 | Ref: ChildName_Grace</div>
+            <button type="submit" class="btn btn-orange btn-block btn-lg mt-3">Submit Enrollment</button>
           </form>
         </div>
       </div>
@@ -525,13 +315,11 @@
   </div>
 </section>
 
-<!-- FOOTER with purple & orange -->
-<footer class="footer-grace" id="contact">
+<footer>
   <div class="container">
-    <h3><i class="fas fa-star-of-life"></i> GRACE TO GRACE ACADEMY | Where Excellence Meets Heart</h3>
-    <p><i class="fas fa-map-marker-alt"></i> 45 Eton Lane, Cape Town 8001 | <i class="fas fa-phone-alt"></i> +27 21 456 7890 | <i class="fas fa-envelope"></i> info@graceacademy.co.za</p>
-    <p><i class="fas fa-graduation-cap"></i> English Medium | Fully Equipped | Safe Transport | Small Classes | FREE Stationery & Toiletries</p>
-    <p style="margin-top: 20px;">&copy; 2026 GRACE TO GRACE ACADEMY Early Learning Centre — Building Bright Futures</p>
+    <h3><i class="fas fa-star-of-life"></i> GRACE TO GRACE ACADEMY</h3>
+    <p>45 Eton Lane, Cape Town | +27 21 456 7890</p>
+    <p>© 2026 | Building Bright Futures</p>
   </div>
 </footer>
 
@@ -539,136 +327,240 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 <script>
-  // ORANGE DUST PARTICLES (playful animation)
-  function createOrangeDust() {
-    const container = document.getElementById('orangeDustContainer');
-    for(let i=0; i<55; i++) {
-      let particle = document.createElement('div');
-      particle.classList.add('dust-particle');
-      let size = Math.random() * 8 + 3;
-      particle.style.width = size + 'px';
-      particle.style.height = size + 'px';
-      particle.style.left = Math.random() * 100 + '%';
-      particle.style.animationDuration = 12 + Math.random() * 15 + 's';
-      particle.style.animationDelay = Math.random() * 10 + 's';
-      particle.style.opacity = Math.random() * 0.5 + 0.2;
-      container.appendChild(particle);
-    }
+  // ORANGE DUST PARTICLES (visual only)
+  for(let i=0;i<50;i++) {
+    let p = document.createElement('div');
+    p.style.position = 'absolute';
+    p.style.width = Math.random()*6+2+'px';
+    p.style.height = p.style.width;
+    p.style.background = 'radial-gradient(circle, #f5b041, transparent)';
+    p.style.borderRadius = '50%';
+    p.style.left = Math.random()*100+'%';
+    p.style.top = Math.random()*100+'%';
+    p.style.opacity = Math.random()*0.4;
+    p.style.animation = 'floatParticle 12s infinite linear';
+    p.style.animationDelay = Math.random()*10+'s';
+    document.getElementById('orangeDustContainer').appendChild(p);
   }
-  createOrangeDust();
+  // Keyframes for dust (dynamically added)
+  const style = document.createElement('style');
+  style.textContent = `@keyframes floatParticle { 0%{transform:translateY(100vh) rotate(0deg); opacity:0;} 20%{opacity:0.5;} 80%{opacity:0.3;} 100%{transform:translateY(-20vh) rotate(360deg); opacity:0;} }`;
+  document.head.appendChild(style);
 
-  // TYPEWRITER with new academy name
-  const typePhrases = [
-    { text: "GRACE TO GRACE", color: "#6a1b9a" },
-    { text: " ACADEMY", color: "#f39c12" },
-    { text: " ★ EXCELLENCE", color: "#4a0e6e" },
-    { text: " ★ ENGLISH MEDIUM", color: "#f39c12" },
-    { text: " ★ SMALL CLASSES", color: "#6a1b9a" }
-  ];
-  let fullChars = [];
-  typePhrases.forEach(phrase => {
-    for(let ch of phrase.text) fullChars.push({ char: ch, color: phrase.color });
-  });
-  let currentIdx = 0;
-  let $typeContainer = $('#typewriter');
-  let typingTimer;
+  // TYPEWRITER
+  const phrases = [{text:"GRACE TO GRACE",color:"#6a1b9a"},{text:" ACADEMY",color:"#f39c12"}];
+  let chars = []; phrases.forEach(p=>{for(let ch of p.text) chars.push({char:ch,color:p.color});});
+  let ci=0, $tw=$('#typewriter'), timer;
+  function updateTw(){ $tw.empty(); for(let i=0;i<ci;i++) $('<span>').css('color',chars[i].color).text(chars[i].char).appendTo($tw); }
+  function typeNext(){ if(ci<chars.length){ ci++; updateTw(); timer=setTimeout(typeNext,55); } else { timer=setTimeout(()=>{ startDel(); },2000); } }
+  function startDel(){ if(ci>0){ ci--; updateTw(); timer=setTimeout(startDel,35); } else { timer=setTimeout(typeNext,400); } }
+  setTimeout(typeNext,300);
 
-  function updateTyping() {
-    $typeContainer.empty();
-    for(let i=0; i<currentIdx; i++) {
-      $('<span>').css('color', fullChars[i].color).text(fullChars[i].char).appendTo($typeContainer);
-    }
+  // ---------- KID-FRIENDLY VOICE (select high-pitched, child-like voice) ----------
+  let kidVoice = null;
+  function setKidVoice() {
+    window.speechSynthesis.cancel();
+    const voices = window.speechSynthesis.getVoices();
+    // Prefer voices with "child", "kid", "Google UK English Female" (higher pitch) or any high-pitched
+    kidVoice = voices.find(v => v.name.toLowerCase().includes('child') || v.name.toLowerCase().includes('kid') || v.name.includes('Google UK English Female')) || voices.find(v => v.name.includes('Samantha')) || voices[0];
   }
-  function typeNext() {
-    if(currentIdx < fullChars.length) {
-      currentIdx++;
-      updateTyping();
-      typingTimer = setTimeout(typeNext, 60);
-    } else {
-      typingTimer = setTimeout(() => { startDelete(); }, 2000);
-    }
-  }
-  function startDelete() {
-    if(currentIdx > 0) {
-      currentIdx--;
-      updateTyping();
-      typingTimer = setTimeout(startDelete, 40);
-    } else {
-      typingTimer = setTimeout(() => { typeNext(); }, 400);
-    }
-  }
-  setTimeout(typeNext, 300);
+  window.speechSynthesis.onvoiceschanged = setKidVoice;
+  setKidVoice();
 
-  // registration form submit
+  function speakLikeKid(text) {
+    window.speechSynthesis.cancel();
+    let utterance = new SpeechSynthesisUtterance(text);
+    if (kidVoice) utterance.voice = kidVoice;
+    utterance.rate = 0.9;
+    utterance.pitch = 1.4;  // higher pitch = more child-like
+    utterance.volume = 1;
+    window.speechSynthesis.speak(utterance);
+    document.getElementById('activityMessage').innerHTML = `<p><i class="fas fa-child"></i> 🧒 "${text}" — Yay! 🌟</p>`;
+    addStar();
+  }
+  function addStar() { let m=document.getElementById('activityMessage'); let s=document.createElement('span'); s.innerHTML=' ⭐'; m.appendChild(s); setTimeout(()=>s.remove(),1500); }
+
+  // Build interactive buttons
+  function buildABC() {
+    let abc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+    let html = '';
+    abc.forEach(l => html += `<button class="game-btn abc-btn" onclick="speakLikeKid('Letter ${l} says ${l} as in ${l==='A'?'Apple':l==='B'?'Ball':l==='C'?'Cat':l}')">${l}</button>`);
+    document.getElementById('abcButtons').innerHTML = html;
+  }
+  function buildNumbers() {
+    let html = '';
+    for(let i=1;i<=10;i++) html += `<button class="game-btn number-btn" onclick="speakLikeKid('Number ${i}! ${i} little ducks!')">${i}</button>`;
+    document.getElementById('numberButtons').innerHTML = html;
+  }
+  function buildAnimals() {
+    let animals = [{emoji:"🦁",name:"lion",sound:"Roar! I'm a lion!"},{emoji:"🐮",name:"cow",sound:"Moo! I'm a cow!"},{emoji:"🐱",name:"cat",sound:"Meow! I'm a cat!"},{emoji:"🐶",name:"dog",sound:"Woof! I'm a dog!"},{emoji:"🐦",name:"bird",sound:"Tweet tweet! I'm a bird!"},{emoji:"🐸",name:"frog",sound:"Ribbit! I'm a frog!"}];
+    let html = '';
+    animals.forEach(a => html += `<button class="game-btn animal-btn" onclick="speakLikeKid('${a.sound}')">${a.emoji} ${a.name}</button>`);
+    document.getElementById('animalButtons').innerHTML = html;
+  }
+  function buildShapes() {
+    let shapes = [{emoji:"⚪",name:"Circle",sound:"Circle! Round like a ball!"},{emoji:"⬛",name:"Square",sound:"Square! Four sides!"},{emoji:"🔺",name:"Triangle",sound:"Triangle! Three corners!"}];
+    let html = '';
+    shapes.forEach(s => html += `<button class="game-btn shape-btn" onclick="speakLikeKid('${s.sound}')">${s.emoji} ${s.name}</button>`);
+    document.getElementById('shapeButtons').innerHTML = html;
+  }
+
+  // ---------- REAL HARD-CODED SONGS (correct melodies) ----------
+  // Using known, reliable MP3 files that actually play the correct tune
+  let currentAudio = null;
+  function playCorrectSong(songKey, title) {
+    if (currentAudio) { currentAudio.pause(); currentAudio.currentTime = 0; }
+    let url = '';
+    switch(songKey) {
+      case 'bus': url = 'https://www.learningstationmusic.com/wp-content/uploads/2021/01/Wheels-on-the-Bus-Short-Version.mp3'; break;
+      case 'twinkle': url = 'https://www.learningstationmusic.com/wp-content/uploads/2021/01/Twinkle-Twinkle-Little-Star-Short-Version.mp3'; break;
+      case 'oldmac': url = 'https://www.learningstationmusic.com/wp-content/uploads/2021/01/Old-MacDonald-Had-a-Farm-Short-Version.mp3'; break;
+      case 'itsy': url = 'https://www.learningstationmusic.com/wp-content/uploads/2021/01/Itsy-Bitsy-Spider-Short-Version.mp3'; break;
+      case 'abc': url = 'https://www.learningstationmusic.com/wp-content/uploads/2021/01/ABC-Song-Short-Version.mp3'; break;
+      default: return;
+    }
+    let audio = new Audio(url);
+    currentAudio = audio;
+    audio.play().catch(e => console.log("Auto-play blocked, user must interact"));
+    document.getElementById('activityMessage').innerHTML = `<p><i class="fas fa-music"></i> 🎵 Now playing: ${title} 🎵 <button class="btn btn-xs btn-warning" onclick="stopCurrentSong()">⏹️ Stop</button></p>`;
+  }
+  function stopCurrentSong() {
+    if (currentAudio) { currentAudio.pause(); currentAudio.currentTime = 0; currentAudio = null; }
+    document.getElementById('activityMessage').innerHTML = `<p>Song stopped. Tap another song to play!</p>`;
+  }
+  function buildSongs() {
+    let songs = [
+      {key:'bus', name:'🚌 Wheels on the Bus'},
+      {key:'twinkle', name:'⭐ Twinkle Twinkle Little Star'},
+      {key:'oldmac', name:'🐄 Old MacDonald'},
+      {key:'itsy', name:'🕷️ Itsy Bitsy Spider'},
+      {key:'abc', name:'🔤 ABC Song'}
+    ];
+    let html = '';
+    songs.forEach(s => html += `<button class="game-btn music-btn" onclick="playCorrectSong('${s.key}','${s.name}')"><i class="fas fa-play"></i> ${s.name}</button> `);
+    html += `<button class="game-btn music-btn" onclick="stopCurrentSong()" style="background:#e74c3c"><i class="fas fa-stop"></i> Stop All</button>`;
+    document.getElementById('songButtons').innerHTML = html;
+  }
+
+  // Memory Game
+  let memoryItems = ['🐶', '🐱', '🐮', '🐶', '🐱', '🐮'];
+  let shuffled = [...memoryItems];
+  let revealed = new Array(6).fill(false);
+  let selectedIdx = null;
+  function renderMemory() {
+    let container = document.getElementById('memoryGame');
+    if(!container) return;
+    container.innerHTML = '';
+    shuffled.forEach((item, i) => {
+      let card = document.createElement('div');
+      card.className = 'memory-card';
+      card.innerHTML = revealed[i] ? item : '❓';
+      card.onclick = () => memoryReveal(i);
+      container.appendChild(card);
+    });
+  }
+  function memoryReveal(idx) {
+    if(revealed[idx]) return;
+    if(selectedIdx === null) {
+      revealed[idx] = true; selectedIdx = idx; renderMemory();
+    } else if(selectedIdx !== null && selectedIdx !== idx) {
+      revealed[idx] = true; renderMemory();
+      if(shuffled[selectedIdx] === shuffled[idx]) {
+        speakLikeKid("Great match! You found a pair!");
+        selectedIdx = null;
+      } else {
+        speakLikeKid("Not a match, try again!");
+        setTimeout(() => {
+          revealed[selectedIdx] = false; revealed[idx] = false;
+          selectedIdx = null; renderMemory();
+        }, 800);
+      }
+    }
+  }
+  function resetMemoryGame() {
+    shuffled = [...memoryItems];
+    for(let i=shuffled.length-1;i>0;i--){ let j=Math.floor(Math.random()*(i+1));[shuffled[i],shuffled[j]]=[shuffled[j],shuffled[i]]; }
+    revealed.fill(false); selectedIdx=null; renderMemory();
+    speakLikeKid("New memory game! Find the pairs!");
+  }
+  function playColorGame() {
+    let colors = ['red', 'blue', 'yellow', 'green', 'purple'];
+    let rand = colors[Math.floor(Math.random()*colors.length)];
+    speakLikeKid(`Find something ${rand} around you! Can you see it?`);
+    document.getElementById('activityMessage').innerHTML = `<p><i class="fas fa-palette"></i> 🎨 Color Hunt: Find the color ${rand}!</p>`;
+  }
+  function giveHighFive() { speakLikeKid("High five! You're super smart! Keep learning!"); }
+
+  // Unlock / Lock
+  function unlockPlayArea() {
+    let num = document.getElementById('studentPlayNumber').value.trim();
+    if(num.length===6 && /^\d{6}$/.test(num)) {
+      document.getElementById('loginArea').style.display = 'none';
+      document.getElementById('playContent').style.display = 'block';
+      buildABC(); buildNumbers(); buildAnimals(); buildShapes(); buildSongs(); resetMemoryGame();
+      speakLikeKid("Welcome to the Play and Learn Zone! Tap any button to learn with my happy voice!");
+    } else { alert("Please enter a valid 6-digit student number (demo: 123456)"); }
+  }
+  function logoutPlayArea() {
+    document.getElementById('loginArea').style.display = 'block';
+    document.getElementById('playContent').style.display = 'none';
+    document.getElementById('studentPlayNumber').value = '';
+    if(currentAudio) { currentAudio.pause(); currentAudio = null; }
+    window.speechSynthesis.cancel();
+  }
+
+  // Registration form
   $('#registrationForm').on('submit', function(e) {
     e.preventDefault();
-    let child = $(this).find('input[placeholder*="Child"]').val() || "child";
-    let msg = `<i class="fas fa-check-circle"></i> 🎉 Thank you! ${child} has been pre-enrolled. Our team will contact you within 24h.`;
-    let notify = $('<div>').css({position:'fixed',bottom:'20px',right:'20px',background:'#6a1b9a',color:'#f39c12',padding:'14px 24px',borderRadius:'40px',zIndex:9999,fontWeight:'bold',boxShadow:'0 10px 20px rgba(0,0,0,0.2)'}).html(msg);
+    let child = $(this).find('input[placeholder*="Name"]').val() || "child";
+    let msg = `<i class="fas fa-check-circle"></i> Thank you ${child}! Enrolled. A student number will be sent for Play & Learn!`;
+    let notify = $('<div>').css({position:'fixed',bottom:'20px',right:'20px',background:'#6a1b9a',color:'#f39c12',padding:'14px 24px',borderRadius:'40px',zIndex:9999,fontWeight:'bold'}).html(msg);
     $('body').append(notify);
     setTimeout(()=>notify.fadeOut(600, function(){$(this).remove();}), 4000);
     this.reset();
   });
 
-  // smooth scroll
+  // Smooth scroll
   $('a[href*="#"]:not([href="#"])').click(function(e) {
-    if(location.pathname.replace(/^\//,'')===this.pathname.replace(/^\//,'') && location.hostname===this.hostname) {
-      let target = $(this.hash);
-      if(target.length) { e.preventDefault(); $('html,body').animate({scrollTop: target.offset().top - 70}, 600); }
-    }
+    let target = $(this.hash);
+    if(target.length) { e.preventDefault(); $('html,body').animate({scrollTop: target.offset().top - 70}, 600); }
   });
 
-  // PDF GENERATION
+  // PDF functions
   const { jsPDF } = window.jspdf;
-  function generatePDF(title, content, filename) {
+  function genPDF(title, content, file) {
     const doc = new jsPDF();
     doc.setFont("helvetica");
     doc.setTextColor(106,27,154);
     doc.setFontSize(18);
-    doc.text(title, 20, 20);
+    doc.text(title,20,20);
     doc.setFontSize(11);
-    let y = 35;
-    const lines = content.split('\n');
-    for(let line of lines) {
-      if(y > 280) { doc.addPage(); y = 20; }
-      doc.text(line, 20, y);
-      y += 6;
-    }
-    doc.save(filename);
+    let y=35;
+    for(let line of content.split('\n')) { if(y>280){doc.addPage();y=20;} doc.text(line,20,y); y+=6; }
+    doc.save(file);
   }
-
   window.downloadRestrictedPDF = function(type) {
-    let studentNum = type === 'report' ? document.getElementById('studentReportNum').value.trim() : document.getElementById('studentYearNum').value.trim();
-    if(!studentNum) { alert("Please enter a valid 6-digit student number."); return; }
-    if(!/^\d{6}$/.test(studentNum)) { alert("Student number must be exactly 6 digits."); return; }
-    let title, content, filename;
-    if(type === 'report') {
-      title = "GRACE TO GRACE ACADEMY Progress Report";
-      filename = `Grace_Report_${studentNum}.pdf`;
-      content = `GRACE TO GRACE ACADEMY - EARLY LEARNING REPORT\nStudent ID: ${studentNum}\nDate: ${new Date().toLocaleDateString()}\n\n--- ACADEMIC & SOCIAL MILESTONES ---\nLiteracy: Building phonemic awareness\nNumeracy: Counting & patterns\nSocial: Excellent collaboration in small class setting\nPhysical: Active participation\nTeacher's remarks: Shines in group activities.\nFREE stationery & toiletries provided this term.\n\n© GRACE TO GRACE ACADEMY`;
-    } else {
-      title = "GRACE TO GRACE ACADEMY Year Plan 2026";
-      filename = `Grace_YearPlan_${studentNum}.pdf`;
-      content = `GRACE TO GRACE ACADEMY - YEAR PLAN 2026\n\nTERM 1 (Jan-Mar): Welcome orientation, English language boost, Parent day 13 March\nTERM 2 (Apr-Jun): Reading festival, Creative arts showcase (10 May)\nTERM 3 (Jul-Sep): STEM exploration, Sports & Leadership Day\nTERM 4 (Oct-Dec): Year-end concert, Graduation ceremony (28 November)\nTransport services available. Small class ratios ensure individual progress.\n\nFREE stationery and toiletries for all enrolled learners.`;
-    }
-    generatePDF(title, content, filename);
-    alert(`✅ ${filename} downloaded!`);
+    let num = type==='report'? document.getElementById('studentReportNum').value.trim() : document.getElementById('studentYearNum').value.trim();
+    if(!num || !/^\d{6}$/.test(num)) { alert("Enter valid 6-digit student number"); return; }
+    if(type==='report') genPDF("Grace Academy Progress Report", `Student: ${num}\nDate: ${new Date().toLocaleDateString()}\nLiteracy: Great progress!\nNumeracy: Counting 1-10\nSocial: Excellent!`, `Grace_Report_${num}.pdf`);
+    else genPDF("Grace Academy Year Plan 2026", "Term1: Jan-Mar (Welcome Week)\nTerm2: Apr-Jun (Reading Festival)\nTerm3: Jul-Sep (Sports Day)\nTerm4: Oct-Dec (Graduation Concert)\nFREE stationery included.", `Grace_YearPlan_${num}.pdf`);
+    alert("Downloaded!");
+  };
+  window.downloadOpenPDF = function(type) {
+    if(type==='stationery') genPDF("FREE Stationery List", "Books, crayons, pencils, paint, play dough, toiletries - ALL FREE!", "Grace_Stationery.pdf");
+    else genPDF("Enrollment Guide", "Steps: Fill form, submit documents, pay R350 registration fee.\nBank: FNB Acc:62849502617 Ref: ChildName_Grace", "Grace_Enrollment.pdf");
+    alert("Downloaded!");
   };
 
-  window.downloadOpenPDF = function(type) {
-    let title, content, filename;
-    if(type === 'stationery') {
-      title = "FREE Stationery & Toiletries List";
-      filename = "Grace_Stationery_Free.pdf";
-      content = `GRACE TO GRACE ACADEMY - COMPLIMENTARY STATIONERY & TOILETRIES\n\nFor every enrolled child (all age groups):\n✅ Exercise books (x5)\n✅ Crayons (24 colors)\n✅ Colored pencils\n✅ Felt tip pens\n✅ Child-safe scissors & glue\n✅ Paint set & brushes\n✅ Play dough set\n✅ Pencil case with pencils, eraser, sharpener\n✅ Water bottle\n✅ Toiletries pack: wipes, hand sanitizer, tissues, spare nappy (infants)\n\nZero cost — included in tuition. No hidden fees.\n\n© GRACE TO GRACE ACADEMY`;
-    } else {
-      title = "GRACE TO GRACE ACADEMY Enrollment Requirements";
-      filename = "Grace_Enrollment.pdf";
-      content = `GRACE TO GRACE ACADEMY - ENROLLMENT GUIDE\n\nREQUIRED DOCUMENTS:\n- Completed registration form\n- Child's Birth Certificate (copy)\n- Immunization card\n- Parent/Guardian ID\n- Proof of address\n- 2 recent photos\n\nREGISTRATION FEE: R350 (once-off)\nMONTHLY FEES: R650 - R850 depending on age group (includes FREE stationery, toiletries, all learning materials).\nTransport optional: R250/month\n\nBANK DETAILS:\nBank: FNB\nAccount: 62849502617\nBranch: 250655\nRef: ChildName_Grace\n\nSMALL CLASS RATIO GUARANTEED (max 1:8). English medium, modern facility, after-care options available.\n\nCONTACT: info@graceacademy.co.za | +27 21 456 7890`;
-    }
-    generatePDF(title, content, filename);
-    alert(`✅ ${filename} downloaded!`);
-  };
+  // Expose functions globally
+  window.speakLikeKid = speakLikeKid;
+  window.playCorrectSong = playCorrectSong;
+  window.stopCurrentSong = stopCurrentSong;
+  window.unlockPlayArea = unlockPlayArea;
+  window.logoutPlayArea = logoutPlayArea;
+  window.resetMemoryGame = resetMemoryGame;
+  window.playColorGame = playColorGame;
+  window.giveHighFive = giveHighFive;
 </script>
 </body>
 </html>
